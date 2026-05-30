@@ -1,105 +1,39 @@
 # quiz-cli
 
-An interactive command-line quiz game for learning JavaScript, Node.js fundamentals, and general programming concepts.
-
-## Project Overview
-
-This repository contains a Node.js CLI application that lets users choose a quiz category, answer multiple-choice questions, and review results at the end of each game session.
-
-The app uses built-in Node.js modules, ES modules, and terminal color formatting to provide a simple interactive experience without external dependencies.
+An interactive command-line quiz game built with Node.js. It lets you choose a quiz category, select how many questions to answer, and then runs a randomized quiz with immediate feedback, progress tracking, a final score summary, and a review of missed answers.
 
 ## Features
 
-- Interactive terminal-based quiz flow
-- Category selection before starting a quiz
-- Configurable question count selection
+- Interactive terminal-based quiz experience
+- Category selection from `questions.json`
+- Choose the number of questions to answer
 - Randomized question order
-- Immediate feedback for correct and incorrect answers
-- Final score summary with performance message
-- Review of missed questions after the quiz
-- ANSI color output for improved readability
-
-## Technologies Used
-
-- Node.js
-- ES Modules
-- Built-in `readline` module for input handling
-- Built-in `fs/promises` for reading quiz data
-- Built-in `path` and `url` utilities
-- JSON for quiz question storage
-
-## Project Structure
-
-Current repository files detected:
-
-```text
-.
-├── colors.js
-├── index.js
-├── input.js
-├── package.json
-├── questions.json
-├── quiz.js
-```
-
-### File Roles
-
-- `index.js` - application entry point and main quiz loop
-- `quiz.js` - quiz logic, scoring, progress, and result display
-- `input.js` - terminal input helpers (`select`, `confirm`, `pressEnter`)
-- `colors.js` - ANSI terminal color utilities
-- `questions.json` - quiz content and category data
-- `package.json` - project metadata and npm scripts
+- Immediate correctness feedback after each answer
+- Progress display during the quiz
+- Final score summary
+- Review of incorrect answers with explanations
+- Replay option after finishing a quiz
+- No external runtime dependencies
 
 ## Prerequisites
 
-- Node.js `>=18.0.0`
-- npm (bundled with Node.js)
+- [Node.js](https://nodejs.org/) **18 or later**
 
-## Installation Instructions
+## Installation
 
-1. Clone the repository:
+Clone the repository and install dependencies:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/SevakGitRepo/test-app.git
 cd test-app
-```
-
-2. Install dependencies:
-
-```bash
 npm install
 ```
 
-> Information not detected from repository: no external dependencies are listed in `package.json`, but running `npm install` will still prepare the project for standard Node.js workflows.
+> This project does not rely on external runtime packages, but running `npm install` will prepare the local project environment and create a lockfile if needed.
 
-## Setup Instructions
+## Usage
 
-The application reads quiz data from `questions.json` and uses ES module imports.
-
-Detected quiz data structure:
-
-- `categories`
-- each category has:
-  - `name`
-  - `questions[]`
-- each question includes:
-  - `question`
-  - `options[]`
-  - `answer`
-  - optional `explanation`
-
-If you edit `questions.json`, keep the same structure so the quiz can load correctly.
-
-## Build Instructions
-
-No build step is detected.
-
-The application runs directly with Node.js.
-
-## Run Instructions
-
-Start the application with:
+Start the quiz application:
 
 ```bash
 npm start
@@ -111,112 +45,96 @@ Or run the entry file directly:
 node index.js
 ```
 
-### What Happens at Runtime
+## How It Works
 
-1. The app loads quiz questions from the JSON file
-2. The user selects a quiz category
-3. The user chooses how many questions to answer
-4. Questions are presented one by one in the terminal
-5. Answers are validated immediately
-6. A final score and review section are displayed
-7. The user can choose to play again
+When you start the app, it will:
 
-## Docker Usage
+1. Display a welcome banner
+2. Load quiz data from `questions.json`
+3. Let you pick a category
+4. Let you choose how many questions to answer
+5. Present questions one at a time
+6. Show feedback immediately after each answer
+7. Display your final score and a review of incorrect answers
+8. Offer the option to replay the quiz
 
-Information not detected from repository.
+## Project Structure
 
-## Environment Variables
+```text
+.
+├── colors.js
+├── index.js
+├── input.js
+├── package.json
+├── questions.json
+├── quiz.js
+└── README.md
+```
 
-Information not detected from repository.
+### File Overview
 
-## API Usage Examples
+- **`index.js`** — CLI entry point and application flow
+- **`quiz.js`** — Quiz class, scoring, progress tracking, shuffling, and results review
+- **`input.js`** — Terminal input helpers built on top of `readline`
+- **`colors.js`** — ANSI color utilities for formatted terminal output
+- **`questions.json`** — Quiz categories, questions, answer indices, and explanations
+- **`package.json`** — Project metadata and npm scripts
 
-Information not detected from repository.
+## Quiz Data Format
 
-This project does not expose an HTTP API. It is a local CLI application.
+Quiz content is stored in `questions.json`. Each category contains a list of questions with:
 
-## Example Usage
+- the question text
+- multiple-choice options
+- the index of the correct answer
+- an explanation shown after answering
 
-### Start the quiz
+### Customization Notes
+
+You can extend the quiz by editing `questions.json`:
+
+- Add new categories
+- Add more questions to existing categories
+- Update answer options
+- Provide clearer explanations for each correct answer
+
+Keep the structure consistent so the CLI can load and present the quiz data correctly.
+
+## Scripts
 
 ```bash
-npm start
+npm start   # Run the quiz CLI
+npm test    # Run the test suite
 ```
 
-### Typical interaction flow
+## Testing
 
-```text
-Choose a category:
-1. JavaScript Basics
-2. Node.js Fundamentals
-3. General Programming
-
-How many questions?
-1. All questions
-2. 3 questions
-3. 5 questions
-
-Your choice (enter number):
-```
-
-## Example Requests/Responses
-
-This project is interactive rather than request/response based.
-
-Example terminal response after answering a question:
-
-```text
-✓ Correct!
-```
-
-Or for an incorrect answer:
-
-```text
-✗ Incorrect!
-The correct answer was: push()
-```
-
-## Testing Instructions
-
-The `package.json` file includes a test script:
+Run the built-in test suite with Node’s test runner:
 
 ```bash
 npm test
 ```
 
-This runs Node.js built-in tests via:
+## Technologies Used
 
-```bash
-node --test
-```
+- **Node.js**
+- **JavaScript (ES modules)**
+- **Built-in `readline`**
+- **Built-in Node test runner**
 
-Information not detected from repository: no test files were included in the repository listing.
+## Contributing
 
-## Configuration Details
+Contributions are welcome.
 
-### Package metadata
+If you'd like to improve the quiz experience, consider:
 
-- Package name: `quiz-cli`
-- Version: `1.0.0`
-- License: `MIT`
-- Module type: `module`
-- Main entry point: `index.js`
+- adding more categories and questions
+- improving terminal styling
+- expanding test coverage
+- refining question explanations
 
-### Scripts
+## License
 
-- `npm start` - runs `node index.js`
-- `npm test` - runs `node --test`
+Add the appropriate license for this project here.
 
-### Runtime behavior
-
-- Questions are loaded from a JSON file at startup
-- Questions are shuffled before each quiz session
-- Progress is shown during each quiz
-- Results include score percentage and review of incorrect answers
-
-## Additional Notes
-
-- The repository appears to be a learning-focused CLI project with no third-party dependencies.
-- The code uses built-in Node.js modules and ANSI escape codes for terminal styling.
-- If you reorganize files into `src/` or `data/` directories, update the import paths and question file path in `index.js` accordingly.
-- Information not detected from repository: no CI, Docker, or deployment configuration files were present in the repository listing.
+If no license has been chosen yet, consider adding one before publishing or accepting contributions.
